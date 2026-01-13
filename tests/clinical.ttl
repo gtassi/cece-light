@@ -1,0 +1,189 @@
+@prefix ex: <http://example.org/clinical#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+############################
+# Ontology declaration
+############################
+
+ex:ClinicalTrialsOntology a owl:Ontology ;
+    rdfs:label "Clinical Trials Information Extraction Ontology" ;
+    rdfs:comment "Ontology for representing clinical trial data extracted from semi-structured or unstructured sources." .
+
+############################
+# Core classes
+############################
+
+ex:ClinicalTrial a owl:Class ;
+    rdfs:label "Clinical Trial" ;
+    rdfs:comment "A registered clinical study involving human participants." .
+
+ex:StudyDesign a owl:Class ;
+    rdfs:label "Study Design" .
+
+ex:Population a owl:Class ;
+    rdfs:label "Population" ;
+    rdfs:comment "Target population of the clinical trial." .
+
+ex:Intervention a owl:Class ;
+    rdfs:label "Intervention" .
+
+ex:Comparator a owl:Class ;
+    rdfs:label "Comparator" .
+
+ex:Outcome a owl:Class ;
+    rdfs:label "Outcome" .
+
+ex:EligibilityCriteria a owl:Class ;
+    rdfs:label "Eligibility Criteria" .
+
+ex:Location a owl:Class ;
+    rdfs:label "Study Location" .
+
+ex:Sponsor a owl:Class ;
+    rdfs:label "Sponsor" .
+
+ex:Investigator a owl:Class ;
+    rdfs:label "Investigator" .
+
+############################
+# Specialized classes
+############################
+
+ex:PrimaryOutcome a owl:Class ;
+    rdfs:subClassOf ex:Outcome ;
+    rdfs:label "Primary Outcome" .
+
+ex:SecondaryOutcome a owl:Class ;
+    rdfs:subClassOf ex:Outcome ;
+    rdfs:label "Secondary Outcome" .
+
+ex:DrugIntervention a owl:Class ;
+    rdfs:subClassOf ex:Intervention ;
+    rdfs:label "Drug Intervention" .
+
+ex:DeviceIntervention a owl:Class ;
+    rdfs:subClassOf ex:Intervention ;
+    rdfs:label "Device Intervention" .
+
+ex:BehavioralIntervention a owl:Class ;
+    rdfs:subClassOf ex:Intervention ;
+    rdfs:label "Behavioral Intervention" .
+
+############################
+# Object properties
+############################
+
+ex:hasStudyDesign a owl:ObjectProperty ;
+    rdfs:domain ex:ClinicalTrial ;
+    rdfs:range ex:StudyDesign .
+
+ex:hasPopulation a owl:ObjectProperty ;
+    rdfs:domain ex:ClinicalTrial ;
+    rdfs:range ex:Population .
+
+ex:hasIntervention a owl:ObjectProperty ;
+    rdfs:domain ex:ClinicalTrial ;
+    rdfs:range ex:Intervention .
+
+ex:hasComparator a owl:ObjectProperty ;
+    rdfs:domain ex:ClinicalTrial ;
+    rdfs:range ex:Comparator .
+
+ex:hasOutcome a owl:ObjectProperty ;
+    rdfs:domain ex:ClinicalTrial ;
+    rdfs:range ex:Outcome .
+
+ex:hasEligibilityCriteria a owl:ObjectProperty ;
+    rdfs:domain ex:ClinicalTrial ;
+    rdfs:range ex:EligibilityCriteria .
+
+ex:hasLocation a owl:ObjectProperty ;
+    rdfs:domain ex:ClinicalTrial ;
+    rdfs:range ex:Location .
+
+ex:hasSponsor a owl:ObjectProperty ;
+    rdfs:domain ex:ClinicalTrial ;
+    rdfs:range ex:Sponsor .
+
+ex:hasInvestigator a owl:ObjectProperty ;
+    rdfs:domain ex:ClinicalTrial ;
+    rdfs:range ex:Investigator .
+
+############################
+# Data properties
+############################
+
+ex:trialId a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain ex:ClinicalTrial ;
+    rdfs:range xsd:string ;
+    rdfs:label "Trial Identifier" .
+
+ex:title a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain ex:ClinicalTrial ;
+    rdfs:range xsd:string .
+
+ex:phase a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain ex:ClinicalTrial ;
+    rdfs:range xsd:string .
+
+ex:status a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain ex:ClinicalTrial ;
+    rdfs:range xsd:string .
+
+ex:startDate a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain ex:ClinicalTrial ;
+    rdfs:range xsd:date .
+
+ex:endDate a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain ex:ClinicalTrial ;
+    rdfs:range xsd:date .
+
+ex:description a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:range xsd:string .
+
+############################
+# Population attributes
+############################
+
+ex:minimumAge a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain ex:Population ;
+    rdfs:range xsd:string .
+
+ex:maximumAge a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain ex:Population ;
+    rdfs:range xsd:string .
+
+ex:gender a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain ex:Population ;
+    rdfs:range xsd:string .
+
+ex:condition a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain ex:Population ;
+    rdfs:range xsd:string .
+
+############################
+# Outcome attributes
+############################
+
+ex:outcomeMeasure a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain ex:Outcome ;
+    rdfs:range xsd:string .
+
+ex:timeFrame a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain ex:Outcome ;
+    rdfs:range xsd:string .
+
+############################
+# Eligibility attributes
+############################
+
+ex:inclusionCriteria a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain ex:EligibilityCriteria ;
+    rdfs:range xsd:string .
+
+ex:exclusionCriteria a owl:DatatypeProperty, owl:FunctionalProperty ;
+    rdfs:domain ex:EligibilityCriteria ;
+    rdfs:range xsd:string .
